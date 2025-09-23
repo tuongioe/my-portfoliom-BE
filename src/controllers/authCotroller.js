@@ -8,18 +8,27 @@ export const login = async (req, res) => {
     const result = await pool.query("SELECT * FROM admins WHERE username=$1", [
       username,
     ]);
-    if (result.lenght === 0)
+
+    if (result.rows.length === 0) {
       return res.status(401).json({ message: "Admin not found" });
+    }
 
-    const admin = result.row[0];
+    const admin = result.rows[0];
+
     const match = await bcrypt.compare(password, admin.password);
-    if (!match) return res.status(401).json({ message: "Invalid password" });
+    if (!match) {
+      return res.status(401).json({ message: "Invalid password" });
+    }
 
-    const token = jwt.sign({ id: admin.id }, process.env.JWT_SECRET, {
-      expireIn: "1d",
-    });
+    const token = jwt.sign(
+      { id: admin.id, username: admin.username },
+      process.env.JWT_SECRET,
+      { expiresIn: "1d" } // ✅ đúng là expiresIn chứ không phải expireIn
+    );
+
     res.json({ token });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: err.message });
   }
 };
