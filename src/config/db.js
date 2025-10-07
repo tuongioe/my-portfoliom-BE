@@ -11,4 +11,8 @@ const pool = new Pool({
   },
 });
 
+pool
+  .connect()
+  .then(() => console.log("✅ Kết nối Supabase thành công"))
+  .catch((err) => console.error("❌ Lỗi kết nối Supabase:", err));
 export default pool;
