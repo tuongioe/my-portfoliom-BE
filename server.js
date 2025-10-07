@@ -10,12 +10,13 @@ dotenv.config();
 const app = express();
 app.use(
   cors({
-    origin: "*",
+    origin: "https://tuong-portfolio.vercel.app",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true, // Cho phép gửi cookies / headers xác thực
   })
 );
 app.use(express.json());
-ß;
+
 app.use("/api/auth", authRoutes);
 app.use("/api/techstacks", techStackRoutes);
 app.use("/api/projects", projectRoutes);
