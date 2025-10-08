@@ -3,9 +3,9 @@ import cors from "cors";
 import dotenv from "dotenv";
 import serverlessExpress from "@vendia/serverless-express";
 
-import authRoutes from "./src/routes/authRoutes.js";
-import techStackRoutes from "./src/routes/techStackRoutes.js";
-import projectRoutes from "./src/routes/projectRoutes.js";
+import authRoutes from "../src/routes/authRoutes.js";
+import techStackRoutes from "../src/routes/techStackRoutes.js";
+import projectRoutes from "../src/routes/projectRoutes.js";
 
 dotenv.config();
 
@@ -21,13 +21,14 @@ app.use(
 
 app.use(express.json());
 
-// Các routes
+// Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/techstacks", techStackRoutes);
 app.use("/api/projects", projectRoutes);
 
 app.get("/", (req, res) => {
-  res.send("🚀 Backend is running on Vercel!");
+  res.send("🚀 Backend is running on Vercel via API folder!");
 });
 
-export default serverlessExpress({ app });
+// 🟡 Quan trọng: Dùng export handler (không dùng export default)
+export const handler = serverlessExpress({ app });
