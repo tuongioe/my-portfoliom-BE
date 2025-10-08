@@ -23,7 +23,7 @@ export const login = async (req, res) => {
     const token = jwt.sign(
       { id: admin.id, username: admin.username },
       process.env.JWT_SECRET,
-      { expiresIn: "1d" } // ✅ đúng là expiresIn chứ không phải expireIn
+      { expiresIn: "1d" }
     );
 
     res.json({ token });
