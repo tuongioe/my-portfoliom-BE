@@ -27,4 +27,4 @@ app.get("/", (req, res) => {
   res.send("Backend is running 🚀");
 });
 
-export const handler = serverlessExpress({ app });
+export default handler = serverlessExpress({ app });
