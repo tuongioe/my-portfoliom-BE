@@ -3,9 +3,9 @@ import cors from "cors";
 import dotenv from "dotenv";
 import serverlessExpress from "@vendia/serverless-express";
 
-import authRoutes from "../src/routes/authRoutes.js";
-import techStackRoutes from "../src/routes/techStackRoutes.js";
-import projectRoutes from "../src/routes/projectRoutes.js";
+import authRoutes from "./src/routes/authRoutes.js";
+import techStackRoutes from "./src/routes/techStackRoutes.js";
+import projectRoutes from "./src/routes/projectRoutes.js";
 
 dotenv.config();
 
