@@ -1,3 +1,4 @@
+import serverlessExpress from "@vendia/serverless-express";
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -8,11 +9,12 @@ import projectRoutes from "./src/routes/projectRoutes.js";
 dotenv.config();
 
 const app = express();
+
 app.use(
   cors({
     origin: ["https://tuong-portfolio.vercel.app", "http://localhost:5173"],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    credentials: true, // Cho phép gửi cookies / headers xác thực
+    credentials: true,
   })
 );
 app.use(express.json());
@@ -25,7 +27,4 @@ app.get("/", (req, res) => {
   res.send("Backend is running 🚀");
 });
 
-const PORT = process.env.PORT || 5001;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
-
-console.log("DATABASE_URL =", process.env.DATABASE_URL);
+export const handler = serverlessExpress({ app });
