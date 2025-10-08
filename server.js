@@ -30,5 +30,4 @@ app.get("/", (req, res) => {
   res.send("🚀 Backend is running on Vercel via API folder!");
 });
 
-// 🟡 Quan trọng: Dùng export handler (không dùng export default)
-export const handler = serverlessExpress({ app });
+export default serverlessExpress({ app });
