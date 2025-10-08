@@ -10,7 +10,7 @@ dotenv.config();
 const app = express();
 app.use(
   cors({
-    origin: "https://tuong-portfolio.vercel.app",
+    origin: ["https://tuong-portfolio.vercel.app", "http://localhost:5173"],
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true, // Cho phép gửi cookies / headers xác thực
   })
@@ -27,3 +27,5 @@ app.get("/", (req, res) => {
 
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+console.log("DATABASE_URL =", process.env.DATABASE_URL);
